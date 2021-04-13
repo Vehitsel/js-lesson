@@ -7,8 +7,21 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
+app.use((req, res, next) => {
+    if (typeof req.headers["secret-key"] == String){
+        res.status(403).json({message: 'Forbiden'});
+        console.log('')
+    } else if (req.headers["secret-key"] == "lesson"){
+        console.log('all ok');
+        next();
+    } else {
+        res.status(403).json({message: 'Forbiden'});
+    }
+})
+
 app.post('/testPost', (req, res) => {
     res.status(200).json({message: 'It is POST'})
+
 })
 
 app.get('/testGet', (req, res) => {
