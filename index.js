@@ -48,6 +48,7 @@ app.get('/todoList', (req, res) => {
 			title: "title = " + i,
 			description: `descr ${i}`,
 		}
+		todolist.push(todo);
 	}
 	res.status(200).json({todolist})
     //Добавляем метод: GET /todoList, ответ: 200, { todoList: [...] }. Модель одной ToDo: { _id: ‘...’, title: ‘...’, description: ‘...’ }. Список должен генериться методом for, где toDo._id = index.    
